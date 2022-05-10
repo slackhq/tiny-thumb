@@ -1,7 +1,7 @@
 # Tiny Thumb
-Takes an image as input and produces a tiny payload that can be used to reconstitute a thumbnail of the input using preshared, static, image quality parameters. This method of compressing images is particularly useful in client/server models where payload size is a concern and custom client side manipulation of the payload, prior to display, is possible.
+A novel form of image compression based on predetermined JPEG parameters.
 
-At the time of writing Slack uses this algorithm in its product to efficiently inline image previews into certain API responses. These previews are displayed to end users while the high resolution content is being fetched over the network.
+This method is particularly useful in client/server models where payload size is a concern and custom client side manipulation of the payload, prior to display, is possible. At the time of writing Slack uses this algorithm in its product to efficiently inline image previews into certain API responses. These previews are displayed to end users while the high resolution content is being fetched over the network.
 
 ![](./img/tiny-thumb-ios.gif)
 
