@@ -32,7 +32,7 @@ img/cy.jpg JPEG 256x341 256x341+0+0 8-bit sRGB 32067B 0.000u 0:00.000
 % convert img/tiny-cy.jpg -resize 128 -quality 100 -blur 0x4 img/tiny-cy-blur.jpg
 ```
 
-| Original | Tiny | Tiny Rescaled and Blurred |
+| Original | Tiny | Upsampled and Blurred |
 | --- | --- | --- |
 | ![](./img/cy.jpg) | ![](./img/tiny-cy.jpg) | ![](./img/tiny-cy-blur.jpg) |
 
