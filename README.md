@@ -25,7 +25,11 @@ It is expected that a server and client will preshare the mapping from all known
 
 ## Example Usage
 
+In the example below we will shrink a 13298 byte image down to 823 bytes.
+
 ```
+% du -b img/cy.jpg
+13298   img/cy.jpg
 % go run main.go -d 128 -o img/tiny-cy.jpg img/cy.jpg          
 {
   "Debug": {
