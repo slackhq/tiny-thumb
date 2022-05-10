@@ -3,9 +3,7 @@ A novel, efficient, and practical method of implementing lossy compression that 
 
 ![](./img/tiny-thumb-ios.gif)
 
-This technique is useful in client/server models where bandwidth is a constraint and custom client side manipulation of the payload, prior to display, is possible.
-
-Slack uses this algorithm in its product to efficiently inline image previews into certain API responses. These previews are displayed to end users while the high resolution content is being fetched over the network.
+This technique is useful in client/server models where bandwidth is a constraint and custom client side manipulation of the payload, prior to display, is possible. Slack uses this algorithm in its product to efficiently inline image previews into some API responses. These previews are displayed to end users while higher quality images are being fetched over the network.
 
 ## Example Usage
 In the example below we will downsample a 32067 byte image to 210 bytes and then upsample and post-process.
