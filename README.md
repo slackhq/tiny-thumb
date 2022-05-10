@@ -4,7 +4,7 @@ Takes an image as input and produces a tiny payload that can be used to reconsti
 At the time of writing Slack uses this algorithm in its product to efficiently inline image content into certain API responses.
 
 ## Example Usage
-In the example below we will shrink a 13298 byte image down to 823 bytes.
+In the example below we will shrink a 13298 byte image down to 823 bytes, and then apply a gaussian blur.
 
 ```
 % du -b img/cy.jpg
