@@ -1,12 +1,12 @@
 # Tiny Thumb
-A novel form of image compression based on predetermined JPEG parameters.
+A novel form of lossy image compression based on predetermined JPEG parameters.
 
 This method is particularly useful in client/server models where payload size is a concern and custom client side manipulation of the payload, prior to display, is possible. At the time of writing Slack uses this algorithm in its product to efficiently inline image previews into certain API responses. These previews are displayed to end users while the high resolution content is being fetched over the network.
 
 ![](./img/tiny-thumb-ios.gif)
 
 ## Example Usage
-In the example below we will shrink a 13298 byte image down to 210 bytes and then scale it back up and apply a gaussian blur.
+In the example below we will downsample a 13298 byte image to 210 bytes and then upsample and apply a gaussian blur.
 
 ```
 % identify img/cy.jpg
@@ -30,7 +30,7 @@ img/cy.jpg JPEG 128x171 128x171+0+0 8-bit sRGB 13298B 0.000u 0:00.000
 }
 
 
-% convert img/tiny-cy.jpg -resize 128 -blur 0x4 img/tiny-cy-blur.jpg
+% convert img/tiny-cy.jpg -resize 128 -quality 100 -blur 0x4 img/tiny-cy-blur.jpg
 ```
 
 | Original | Tiny | Tiny Rescaled and Blurred |
