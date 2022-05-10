@@ -49,28 +49,32 @@ Reconstitute:
 - Concatenate a known header with the tiny thumb and make some small adjustments to get a valid JPEG.
 - Optionally upsample and post process. :sparkles:
 
+## Options and Configuration
+This program takes two options that can be changed; a type and a maximum dimension. Each type corresponds to a specific jpeg header and dimension offset. This program includes a mapping of types currently used by Slack, the details of which can be found in the program output, the source code, or the table below. A server and client should preshare the mapping from all known types to corresponding headers and dimension offsets.
+
 ## Program Output and Detailed Reconstitution Algorithim
-The output of this program is a json object containing the key `Payload` whose value is a base64 encoded byte array. The base64 header can be found in the key `Debug.Head`, and the dimension offset in `Debug.DimensionOffset`.
+The output of this program is a json object containing:
+| Key | Value |
+| --- | --- |
+| `Payload` | base64 encoded tiny thumb |
+| `Debug.Head` | the JPEG header |
+| `Debug.DimensionOffset` | an offset at which the header must be modified (see below) |
 
-A server and client should preshare the mapping from all known types to corresponding headers and dimension offsets. Upon receiving a payload, a client can reconstitute a valid JPEG using the following process:
-
+Upon receiving a payload, a client can reconstitute a valid JPEG using the following process:
 - Split payload into three parts; the first byte is the `$type`, the next four bytes are the `$dimensions`, and the remaining bytes are the `$tail`.
 - Get the corresponding preshared `$header` and `$dimension_offset` for `$type`. If you do not have values for this `$type`, fail.
 - Set the four bytes of `$header` beginning at offset `$dimension_offset` to the value of `$dimensions`.
 - Concatenate `$header` and `$tail` to get a valid JPEG.
 
-## Options and Configuration
-This program takes two options that can be changed; the 'type' and the 'maximum dimension'. Each type corresponds to a specific jpeg 'header' and 'dimension offset'. This program includes a mapping of types currently used by Slack, the details of which can be found in the program output or source code.
-
 ## Debugging Tips
-- Use `cmp` to determine if the first n bytes of a file are identical.
-- The -o flag can be used to output the entire image for debuggling.
+- Use `cmp` to determine if the first n bytes of two files are identical.
+- Tiny thumb's `-o` flag can be used to output the entire image for debugging.
 
 ## References
 ![jpeg-reference](./img/jpeg-reference.jpg)
 
 The full JPEG specification: https://www.w3.org/Graphics/JPEG/jfif3.pdf
 
-Some discussion of this technique can be found online:
+Discussion and prior-art related to this technique:
 - https://stackoverflow.com/questioins/56236805/create-jpeg-thumb-image-with-general-fixed-header
 - https://engineering.fb.com/android/the-technology-behind-preview-photos
