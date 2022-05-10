@@ -41,7 +41,7 @@ img/cy.jpg JPEG 128x171 128x171+0+0 8-bit sRGB 13298B 0.000u 0:00.000
 - Convert the image to a jpeg.
 - Scale it down.
 - Reduce its 'quality' using predetermined, hardcoded parameters.
-- Strip the jpeg header.
+- Strip the JPEG header up to and including part of the 'start of scan' marker.
 
 ## Program Output and Reconstitution Algorithim
 The output of this program is a json object containing the key `Payload` whose value is a base64 encoded byte array. The base64 header can be found in the key `Debug.Head`, and the dimension offset in `Debug.DimensionOffset`.
