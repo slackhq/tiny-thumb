@@ -39,8 +39,7 @@ img/cy.jpg JPEG 128x171 128x171+0+0 8-bit sRGB 13298B 0.000u 0:00.000
 
 ## High Level Tiny Thumb Generation Algorithim
 - Convert the image to a jpeg.
-- Scale it down.
-- Reduce its 'quality' using predetermined, hardcoded parameters.
+- Downsample by scaling down and using predetermined JPEG quality parameters.
 - Strip the JPEG header up to and including part of the 'start of scan' marker.
 
 ## Program Output and Reconstitution Algorithim
