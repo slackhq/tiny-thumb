@@ -2,6 +2,7 @@
 A novel, efficient, and practical method for lossy image compression, that produces visually appealing thumbnails.
 <div align="center">
   <img src="./img/tiny-thumb-ios.gif">
+  &nbsp;&nbsp;&nbsp;&nbsp;
   <img src="./img/tinytransition.gif">
 </div>
 This technique is useful in a client / server environment where bandwidth is constrained and custom client side manipulation of the payload, prior to display, is possible. Slack uses this algorithm in its product to efficiently inline image previews into some API responses. These previews are displayed to end users while higher quality images are being fetched over the network.
