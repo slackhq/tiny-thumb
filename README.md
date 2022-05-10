@@ -1,7 +1,7 @@
 # Tiny Thumb
 Takes an image as input and produces a tiny payload that can be used to reconstitute a thumbnail of the input using preshared, static, image quality parameters. This method of compressing images is particularly useful in client/server models where payload size is a concern and custom client side manipulation of the payload, prior to display, is possible.
 
-At the time of writing Slack uses this algorithim in it's product to efficiently inline image content into certain API responses.
+At the time of writing Slack uses this algorithm in its product to efficiently inline image content into certain API responses.
 
 ## Example Usage
 In the example below we will shrink a 13298 byte image down to 823 bytes.
