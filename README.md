@@ -40,12 +40,12 @@ img/cy.jpg JPEG 256x341 256x341+0+0 8-bit sRGB 32067B 0.000u 0:00.000
 
 ## High-Level Algorithim
 
-🤏 Create:
+🤏 Create (server side):
 - Convert input to JPEG.
 - Downsample using predetermined JPEG quality parameters.
 - Strip the JPEG header up to and including part of the 'start of scan' marker. 
 
-✨ Reconstitute:
+✨ Reconstitute (client side):
 - Concatenate a known header with the tiny thumb and make some small adjustments to get a valid JPEG.
 - Upsample and apply a gaussian blur.
 
