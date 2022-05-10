@@ -38,18 +38,18 @@ img/cy.jpg JPEG 256x341 256x341+0+0 8-bit sRGB 32067B 0.000u 0:00.000
 | --- | --- | --- |
 | ![](./img/cy.jpg) | ![](./img/tiny-cy.jpg) | ![](./img/tiny-cy-blur.jpg) |
 
-## High-Level Algorithim 
+## High-Level Algorithim
 
 Create:
 - Convert input to JPEG.
 - Downsample using predetermined JPEG quality parameters.
 - Strip the JPEG header up to and including part of the 'start of scan' marker.
 
-View:
+Reconstitute:
 - Concatenate a known header with the tiny thumb and make some small adjustments to get a valid JPEG.
-- Optionally upsample and post process.
+- Optionally upsample and post process. :sparkles:
 
-## Program Output and Reconstitution Algorithim
+## Program Output and Detailed Reconstitution Algorithim
 The output of this program is a json object containing the key `Payload` whose value is a base64 encoded byte array. The base64 header can be found in the key `Debug.Head`, and the dimension offset in `Debug.DimensionOffset`.
 
 A server and client should preshare the mapping from all known types to corresponding headers and dimension offsets. Upon receiving a payload, a client can reconstitute a valid JPEG using the following process:
@@ -57,9 +57,7 @@ A server and client should preshare the mapping from all known types to correspo
 - Split payload into three parts; the first byte is the `$type`, the next four bytes are the `$dimensions`, and the remaining bytes are the `$tail`.
 - Get the corresponding preshared `$header` and `$dimension_offset` for `$type`. If you do not have values for this `$type`, fail.
 - Set the four bytes of `$header` beginning at offset `$dimension_offset` to the value of `$dimensions`.
-- Concatenate `$header` and `$tail` to get the final result.
-
-Further post processing, such as upsampling and blurring, can optionally be performed on the resulting JPEG. :sparkles:
+- Concatenate `$header` and `$tail` to get a valid JPEG.
 
 ## Options and Configuration
 This program takes two options that can be changed; the 'type' and the 'maximum dimension'. Each type corresponds to a specific jpeg 'header' and 'dimension offset'. This program includes a mapping of types currently used by Slack, the details of which can be found in the program output or source code.
