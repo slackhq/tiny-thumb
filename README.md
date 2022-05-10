@@ -1,4 +1,4 @@
-# Tiny Thumb 🤏
+# Tiny Thumb 🤏 ✨
 A novel, efficient, and practical method for lossy image compression, that produces visually appealing thumbnails.
 
 ![](./img/tiny-thumb-ios.gif)
@@ -38,14 +38,14 @@ img/cy.jpg JPEG 256x341 256x341+0+0 8-bit sRGB 32067B 0.000u 0:00.000
 
 ## High-Level Algorithim
 
-Create:
+🤏 Create:
 - Convert input to JPEG.
 - Downsample using predetermined JPEG quality parameters.
-- Strip the JPEG header up to and including part of the 'start of scan' marker.
+- Strip the JPEG header up to and including part of the 'start of scan' marker. 
 
-Reconstitute:
+✨ Reconstitute:
 - Concatenate a known header with the tiny thumb and make some small adjustments to get a valid JPEG.
-- Upsample and apply a gaussian blur. :sparkles:
+- Upsample and apply a gaussian blur.
 
 ## Options and Configuration
 This program takes two options that can be changed; a type and a maximum dimension. Each type corresponds to a specific jpeg header and dimension offset. This program includes a mapping of types currently used by Slack, the details of which can be found in the program output or the source code. A server and client should preshare the mapping from all known types to corresponding headers and dimension offsets.
