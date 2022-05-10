@@ -50,14 +50,14 @@ Reconstitute:
 - Optionally upsample and post process. :sparkles:
 
 ## Options and Configuration
-This program takes two options that can be changed; a type and a maximum dimension. Each type corresponds to a specific jpeg header and dimension offset. This program includes a mapping of types currently used by Slack, the details of which can be found in the program output, the source code, or the table below. A server and client should preshare the mapping from all known types to corresponding headers and dimension offsets.
+This program takes two options that can be changed; a type and a maximum dimension. Each type corresponds to a specific jpeg header and dimension offset. This program includes a mapping of types currently used by Slack, the details of which can be found in the program output or the source code. A server and client should preshare the mapping from all known types to corresponding headers and dimension offsets.
 
 ## Program Output and Detailed Reconstitution Algorithim
 The output of this program is a json object containing:
 | Key | Value |
 | --- | --- |
 | `Payload` | base64 encoded tiny thumb |
-| `Debug.Head` | the JPEG header |
+| `Debug.Head` | base64 encoded JPEG header |
 | `Debug.DimensionOffset` | an offset at which the header must be modified (see below) |
 
 Upon receiving a payload, a client can reconstitute a valid JPEG using the following process:
