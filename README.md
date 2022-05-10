@@ -1,4 +1,4 @@
-# Tiny Thumb
+# Tiny Thumb 🤏
 A novel form of lossy image compression based on predetermined JPEG parameters.
 
 ![](./img/tiny-thumb-ios.gif)
