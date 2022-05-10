@@ -1,5 +1,5 @@
 # Tiny Thumb
-Takes an image as input and produces a tiny payload that can be used to reconstitute a thumbnail of the input using preshared, static, image quality parameters. This method is particularly useful in client/server models where payload size is a concern and custom client side manipulation of the payload, prior to display, is possible.
+Takes an image as input and produces a tiny payload that can be used to reconstitute a thumbnail of the input using preshared, static, image quality parameters. This method of compressing images is particularly useful in client/server models where payload size is a concern and custom client side manipulation of the payload, prior to display, is possible.
 
 At the time of writing Slack uses this algorithim in it's product to inline some image content into API responses.
 
@@ -8,9 +8,6 @@ At the time of writing Slack uses this algorithim in it's product to inline some
 - Scale it down.
 - Reduce it's 'quality' using predetermined, hardcoded, static parameters.
 - Strip the jpeg header.
-
-## Options and Configuration
-There are two options that can be changed; the 'type' and the 'maximum dimension'. Each type corresponds to a specific jpeg header and 'dimension offset'.
 
 ## Output and Reconstitution Algorithim
 The output of this program is a json object containing the key "Payload" whose value is a base64 encoded byte array. The base64 header can be found in the key "Debug.Head", and the dimension offset in Debug.DimensionOffset.
@@ -23,8 +20,10 @@ It is expected that a server and client will preshare the mapping from all known
 - Concatenate `$header` and `$tail` to get the final result.
 - Optional: apply a gaussian blur.
 
-## Example Usage
+## Options and Configuration
+There are two options that can be changed; the 'type' and the 'maximum dimension'. Each type corresponds to a specific jpeg header and 'dimension offset'. This reference implementation includes a mapping of 'type's currently used by Slack, the details of which can be found in the program output or source code.
 
+## Example Usage
 In the example below we will shrink a 13298 byte image down to 823 bytes.
 
 ```
@@ -59,10 +58,10 @@ In the example below we will shrink a 13298 byte image down to 823 bytes.
 - The -o flag can be used to output the entire image for debuggling.
 
 ## References
-Some discussion of this technique can be found online:
-- https://stackoverflow.com/questioins/56236805/create-jpeg-thumb-image-with-general-fixed-header
-- https://engineering.fb.com/android/the-technology-behind-preview-photos
-
 ![jpeg-reference](./img/jpeg-reference.jpg)
 
 The full JPEG specification: https://www.w3.org/Graphics/JPEG/jfif3.pdf
+
+Some discussion of this technique can be found online:
+- https://stackoverflow.com/questioins/56236805/create-jpeg-thumb-image-with-general-fixed-header
+- https://engineering.fb.com/android/the-technology-behind-preview-photos
