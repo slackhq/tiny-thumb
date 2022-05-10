@@ -6,13 +6,13 @@ A novel form of lossy image compression based on predetermined JPEG parameters.
 This method is particularly useful in client/server models where payload size is a concern and custom client side manipulation of the payload, prior to display, is possible. At the time of writing Slack uses this algorithm in its product to efficiently inline image previews into certain API responses. These previews are displayed to end users while the high resolution content is being fetched over the network.
 
 ## Example Usage
-In the example below we will downsample a 13298 byte image to 210 bytes and then upsample and apply a gaussian blur.
+In the example below we will downsample a 32067 byte image to 210 bytes and then upsample and apply a gaussian blur.
 
 ```
 % identify img/cy.jpg
-img/cy.jpg JPEG 128x171 128x171+0+0 8-bit sRGB 13298B 0.000u 0:00.000
+img/cy.jpg JPEG 256x341 256x341+0+0 8-bit sRGB 32067B 0.000u 0:00.000
 
-% go run main.go -d 64 -o img/tiny-cy.jpg img/cy.jpg    
+% go run main.go -d 64 -o img/tiny-cy.jpg img/cy.jpg  
 {
   "Debug": {
     "Parameters": {
@@ -20,15 +20,14 @@ img/cy.jpg JPEG 128x171 128x171+0+0 8-bit sRGB 13298B 0.000u 0:00.000
       "Head": "/9j/2wCEAHJPVmRWR3JkXWSBeXKIq/+6q52dq//6/8////////////////////////////////////////////////////8BeYGBq5ar/7q6///////////////////////////////////////////////////////////////////////////AABEIAAAAAAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AA==",
       "DimensionOffset": 141
     },
-    "Final": "/9j/2wCEAHJPVmRWR3JkXWSBeXKIq/+6q52dq//6/8////////////////////////////////////////////////////8BeYGBq5ar/7q6///////////////////////////////////////////////////////////////////////////AABEIAEAALwMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AIgc9SKXPP1pMc5FL39aQCZ4Pr6Ug7+lOxnmmUAOB+X6UH3pcfKe2KaaAHDqcVIePTFGMgYGDS5PPHtSAZwck+tBUAZUdKdwDg4GaYcsDgcCgA5INRk5p7ZUDB4NMamBMeDjpSbjkcE0m7pnnPapCr7ehNIBOOhApowp21IFIQE/eNIBg5z+VOwCBflI2nFRMMVZZiF61CX3dqB2JywJ4A+tIrc0Pt28jioN208UAWOCRScbuuKaGDDIOKQtk4PBoASVsnAplJ3NFBSP/9k=",
+    "Final": "/9j/2wCEAHJPVmRWR3JkXWSBeXKIq/+6q52dq//6/8////////////////////////////////////////////////////8BeYGBq5ar/7q6///////////////////////////////////////////////////////////////////////////AABEIAEAAMAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AIgc9SKXPP1pMc5FL3z1pAJng5/KkHtTsZOaZQA5Tx9KKUDj8M00/WgBw6nFSEY9MUYyBgYOKXJBPHTikAzhsk0pVcZUe9LwDg4GRTeWyFHFACDJzTCacchcg9aa3TP86YEpwDjpSbjxwTSbumec9qk2uF6E0gEyM4IHNN4VsflT1UhAT97pQBg5JH4U0gEC8EbTiomGKskkJ1JzUJfPbNAycsCeAPrSK3NK23byBiq+7aeKALBwSKTjd6U0MGGaC3IB6/zoASV+wqOkIwxzRQNH/9k=",
     "Height": 64,
-    "Width": 47,
-    "PayloadLen": 210,
+    "Width": 48,
+    "PayloadLen": 216,
     "MaxDimension": 64
   },
-  "Payload": "AQBAAC+IHPUilzz9aTHORS9/WkAmeD6+lIO/pTsZ5plADgfl+lB96XHyntimmgBw6nFSHj0xRjIGBg0uTzx7UgGcHJPrQVAGVHSncA4OBmmHLA4HAoAOSDUZOae2VAweDTGpgTHg46Um45HBNJu6Z5z2qQq+3oTSATjoQKaMKdtSBSEBP3jSAYOc/lTsAgX5SNpxUTDFWWYhetQl93agdicsCeAPrSK3ND7dvI4qDdtPFAFjgkUnG7rimhgwyDikLZODwaAElbJwKZSdzRQUj//Z"
+  "Payload": "AQBAADCIHPUilzz9aTHORS989aQCZ4OfypB7U7GTmmUAOU8fSilA4/DNNP1oAcOpxUhGPTFGMgYGDilyQTx04pAM4bJNKVXGVHvS8A4OBkU3lshRxQAgyc0wmnHIXIPWmt0z/OmBKcA46Um48cE0m7pnnPapNrhehNIBMjOCBzTeFbH5U9VIQE/e6UAYOSR+FNIBAvBG04qJhirJJCdSc1CXz2zQMnLAngD60itzStt28gYqvu2nigCwcEik43elNDBhmgtyAev86AElfsKjpCMMc0UDR//Z"
 }
-
 
 % convert img/tiny-cy.jpg -resize 128 -quality 100 -blur 0x4 img/tiny-cy-blur.jpg
 ```
