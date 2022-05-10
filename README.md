@@ -1,5 +1,5 @@
 # Tiny Thumb 🤏
-A novel, efficient, and practical method of implementing lossy compression that produces visually appealing image previews.
+A novel, efficient, and practical method of implementing lossy compression that produces visually appealing image thumbnails.
 
 ![](./img/tiny-thumb-ios.gif)
 
