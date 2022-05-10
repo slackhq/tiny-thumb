@@ -3,7 +3,7 @@ Takes an image as input and produces a tiny payload that can be used to reconsti
 
 At the time of writing Slack uses this algorithm in its product to efficiently inline image previews into certain API responses. These previews are displayed to end users while the high resolution content is being fetched over the network.
 
-![](./img/tiny-thumb-ios.mp4)
+![](./img/tiny-thumb-ios.gif)
 
 ## Example Usage
 In the example below we will shrink a 13298 byte image down to 823 bytes and then apply a gaussian blur.
