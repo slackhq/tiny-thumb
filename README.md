@@ -4,7 +4,7 @@ Takes an image as input and produces a tiny payload that can be used to reconsti
 At the time of writing Slack uses this algorithm in its product to efficiently inline image content into certain API responses.
 
 ## Example Usage
-In the example below we will shrink a 13298 byte image down to 823 bytes, and then apply a gaussian blur.
+In the example below we will shrink a 13298 byte image down to 823 bytes and then apply a gaussian blur.
 
 ```
 % du -b img/cy.jpg
@@ -40,7 +40,7 @@ In the example below we will shrink a 13298 byte image down to 823 bytes, and th
 - Strip the jpeg header.
 
 ## Output and Reconstitution Algorithim
-The output of this program is a json object containing the key "Payload" whose value is a base64 encoded byte array. The base64 header can be found in the key "Debug.Head", and the dimension offset in Debug.DimensionOffset.
+The output of this program is a json object containing the key `Payload` whose value is a base64 encoded byte array. The base64 header can be found in the key `Debug.Head`, and the dimension offset in `Debug.DimensionOffset`.
 
 It is expected that a server and client will preshare the mapping from all known types to there corresponding headers and dimension offsets. Upon receiving a payload a client can reconstitute the full JPEG by using the following process:
 
