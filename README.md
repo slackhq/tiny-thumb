@@ -1,12 +1,14 @@
 # Tiny Thumb 🤏
-A novel form of lossy image compression based on predetermined JPEG parameters.
+A novel, efficient, and practical method of implementing lossy compression that produces visually appealing image previews.
 
 ![](./img/tiny-thumb-ios.gif)
 
-This method is particularly useful in client/server models where payload size is a concern and custom client side manipulation of the payload, prior to display, is possible. At the time of writing Slack uses this algorithm in its product to efficiently inline image previews into certain API responses. These previews are displayed to end users while the high resolution content is being fetched over the network.
+This technique is useful in client/server models where bandwidth is a constraint and custom client side manipulation of the payload, prior to display, is possible.
+
+Slack uses this algorithm in its product to efficiently inline image previews into certain API responses. These previews are displayed to end users while the high resolution content is being fetched over the network.
 
 ## Example Usage
-In the example below we will downsample a 32067 byte image to 210 bytes and then upsample and apply a gaussian blur.
+In the example below we will downsample a 32067 byte image to 210 bytes and then upsample and post-process.
 
 ```
 % identify img/cy.jpg
@@ -36,10 +38,16 @@ img/cy.jpg JPEG 256x341 256x341+0+0 8-bit sRGB 32067B 0.000u 0:00.000
 | --- | --- | --- |
 | ![](./img/cy.jpg) | ![](./img/tiny-cy.jpg) | ![](./img/tiny-cy-blur.jpg) |
 
-## High Level Tiny Thumb Generation Algorithim
-- Convert the image to a jpeg.
-- Downsample by scaling down and using predetermined JPEG quality parameters.
+## High-Level Algorithim 
+
+Create:
+- Convert input to JPEG.
+- Downsample using predetermined JPEG quality parameters.
 - Strip the JPEG header up to and including part of the 'start of scan' marker.
+
+View:
+- Concatenate a known header with the tiny thumb and make some small adjustments to get a valid JPEG.
+- Optionally upsample and post process.
 
 ## Program Output and Reconstitution Algorithim
 The output of this program is a json object containing the key `Payload` whose value is a base64 encoded byte array. The base64 header can be found in the key `Debug.Head`, and the dimension offset in `Debug.DimensionOffset`.
